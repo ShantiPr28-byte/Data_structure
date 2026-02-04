@@ -11,6 +11,7 @@ public class Dfs {
 
         ArrayList<ArrayList<Integer>> adj = new ArrayList<>();
         for(int i = 0; i <= V; i++) {
+
             adj.add(new ArrayList<Integer>());
         }
 
