@@ -9,6 +9,8 @@ public class Fibonacci {
         int result = fibbSo(n);
         System.out.println(result);
     }
+
+    //memoization
     private static int fibo(int n, int[] dp) {
         if(n<=1) {
             return n;
