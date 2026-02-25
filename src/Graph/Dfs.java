@@ -1,9 +1,10 @@
 package Graph;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Dfs {
-    public static void main(String[] args) {
+    static void main() {
         Scanner sc = new Scanner(System.in);
         int V, edge;
         V = sc.nextInt();
@@ -21,37 +22,19 @@ public class Dfs {
             adj.get(u).add(v);
             adj.get(v).add(u);
         }
-
         boolean[] vis = new boolean[V];
-        ArrayList<Integer> ans = new ArrayList<>();
-        ans = bfs(adj, vis, 0);
-        for(int i = 0; i < ans.size(); i++) {
-            System.out.println(ans.get(i)+" ");
-        }
+
+        dfs(0,vis,adj);
     }
 
-    public static ArrayList<Integer> bfs(ArrayList<ArrayList<Integer>> adj, boolean[] vis, int src) {
-        ArrayList<Integer> ans = new ArrayList<>();
+    private static void dfs(int i, boolean[] vis, ArrayList<ArrayList<Integer>> adj) {
+        vis[i]=true;
+        System.out.println(i);
 
-        Queue<Integer> q = new LinkedList<>();
-        vis[src] = true;
-        q.offer(src);
-
-        while(!q.isEmpty()) {
-            int node = q.poll();
-            ans.add(node);
-            for(int adjNode : adj.get(node)) {
-                if(vis[adjNode] == false) {
-                    vis[adjNode] = true;
-                    q.offer(adjNode);
-                }
+        for(int neighbour:adj.get(i)){
+            if(!vis[neighbour]){
+                dfs(neighbour,vis,adj);
             }
         }
-        return ans;
-        //time complexity = O(V+E)
-        //space complexity = O(V)
     }
-    // this is for connexted
-    // try for non connected -> use a loop for every src
-
 }
